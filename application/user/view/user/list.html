@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--第一步：引入Javascript / CSS （CDN）-->
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>用戶列表</title>
+    <h1 style="color: #ff4075">user/list</h1>
+</head>
+<body>
+<div id="test"></div>
+
+    <table id="table_id_example" class="display">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>PARENTID</td>
+                <td>ACCOUNT</td>
+                <td>NAME</td>
+            </tr>
+        </thead>
+    </table>
+    <script type="text/javascript">
+        <!--第三步:初始化Datatables-->
+        $(document).ready( function () {
+            var  data  = '{$list|raw}';
+
+
+            // data = JSON.parse(data);
+            data = eval(data);
+            $('#table_id_example').DataTable({
+                // data:[{"id":1,"username":"admin","password":"9a8d433e2aaff89fae34c4c6113bcfa0","salt":"018ac0891baa814af14a11f4c6c4316c"},{"id":2,"username":"demo","password":"fff","salt":"fff1"},{"id":3,"username":"fooraze","password":"yyyyy","salt":"zzzzz"}],
+
+                data:data,
+                columns: [
+                    { data: 'ID' },
+                    { data: 'PARENTID' },
+                    { data: 'ACCOUNT' },
+                    { data: 'NAME' }
+                ],
+                language: {
+                    url: '/static/localisation/Chinese.json'
+                }
+            });
+
+
+        } );
+    </script>
+
+</body>
+</html>
